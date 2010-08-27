@@ -1,4 +1,22 @@
 <?php
+
+global $gBitSystem;
+
+$gBitSystem->registerPackageInfo( TAGS_PKG_NAME, array(
+	'description' => "A simple Liberty Service that any package can use to tag its content with key words.",
+	'license' => '<a href="http://www.gnu.org/licenses/licenses.html#LGPL">LGPL</a>',
+) );
+
+// Requirements
+$gBitSystem->registerRequirements( TAGS_PKG_NAME, array(
+    'liberty' => array( 'min' => '2.1.4' ),
+));
+
+
+// Install process
+global $gBitInstaller;
+if( is_object( $gBitInstaller ) ){
+
 $tables = array(
   'tags' => "
     tag_id I4 PRIMARY,
@@ -16,17 +34,9 @@ $tables = array(
   "
 );
 
-global $gBitInstaller;
-
 foreach( array_keys( $tables ) AS $tableName ) {
 	$gBitInstaller->registerSchemaTable( TAGS_PKG_NAME, $tableName, $tables[$tableName] );
 }
-
-$gBitInstaller->registerPackageInfo( TAGS_PKG_NAME, array(
-	'description' => "A simple Liberty Service that any package can use to tag its content with key words.",
-	'license' => '<a href="http://www.gnu.org/licenses/licenses.html#LGPL">LGPL</a>',
-) );
-
 
 $gBitInstaller->registerPreferences( TAGS_PKG_NAME, array(
 	array( TAGS_PKG_NAME, 'tags_in_view', 'y' ),
@@ -51,7 +61,4 @@ $gBitInstaller->registerUserPermissions( TAGS_PKG_NAME, array(
 	array( 'p_tags_moderate', 'Can edit tags', 'editors', TAGS_PKG_NAME ),
 ) );
 
-// Requirements
-$gBitInstaller->registerRequirements( TAGS_PKG_NAME, array(
-    'liberty' => array( 'min' => '2.1.4' ),
-));
+}
