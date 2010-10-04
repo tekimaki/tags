@@ -1,0 +1,52 @@
+---
+tags: 
+  homeable: false
+  required: false
+  tables: 
+    tags: |
+      
+      tag_id I4 PRIMARY,
+      tag C(64) NOTNULL
+      
+    tags_content_map: |
+      
+      tag_id I4 NOTNULL,
+      content_id I4 NOTNULL,
+      tagger_id I4 NOTNULL,
+      tagged_on I8 NOTNULL
+      CONSTRAINT ', CONSTRAINT `tags_content_map_tag_ref` FOREIGN KEY (`tag_id`) REFERENCES `tags` ( `tag_id` )
+      , CONSTRAINT `tags_content_map_content_ref` FOREIGN KEY (`content_id`) REFERENCES `liberty_content` ( `content_id` )
+      , CONSTRAINT `tags_content_map_tagger_id_ref` FOREIGN KEY (`tagger_id`) REFERENCES `users_users` ( `user_id` )'
+      
+  preferences: 
+    tags_in_view: y
+    tags_list_title: y
+    tags_list_type: y
+    tags_list_author: y
+    tags_list_lastmodif: y
+  sequences: 
+    tags_tag_id_seq: 
+      start: 1
+  permissions: 
+    p_tags_admin: 
+      description: Can admin tags
+      level: admin
+    p_tags_create: 
+      description: Can create tags
+      level: registered
+    p_tags_view: 
+      description: Can view tags
+      level: basic
+    p_tags_moderate: 
+      description: Can edit tags
+      level: editors
+  requirements: 
+    liberty: 
+      min: 2.1.4
+  version: 0.0.0
+  description: >
+    A simple Liberty Service that any
+    package can use to tag its content with
+    key words.
+  license: 
+    html: '<a href="http://www.gnu.org/licenses/licenses.html#LGPL">LGPL</a>'
