@@ -578,6 +578,7 @@ class LibertyTag extends LibertyBase {
 		$gBitSmarty->assign( 'user_id', @BitBase::verifyId( $pParamHash['user_id'] ) ? $pParamHash['user_id'] : NULL );
 
 		// now that we have all the offsets, we can get the content list
+		$cListRequest = $pParamHash;
 		include_once( LIBERTY_PKG_PATH.'get_content_list_inc.php' );
 
 		$gBitSmarty->assign( 'contentSelect', $contentSelect );
