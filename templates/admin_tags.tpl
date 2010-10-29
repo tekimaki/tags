@@ -95,7 +95,7 @@
 
 
 	{/jstabs}
-	<div class="row submit">
+	<div class="buttonHolder row submit">
 		<input type="submit" name="tags_preferences" value="{tr}Change preferences{/tr}" />
 	</div>
 {/form}
